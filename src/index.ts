@@ -65,6 +65,27 @@ const getAllUsers = async ()=>{
             avaialableOption.textContent = user.name;
             pickUser.appendChild(avaialableOption)
         });
-        
     }
 }
+
+//function to get user post
+let postURL: Post[]
+const getUserPost = async(userId: number)=>{
+    const postUrl = await fetch('https://jsonplaceholder.typicode.com/posts');
+    if(postUrl.ok){
+        postURL = await postUrl.json();
+
+        //make the innerHTML of the post and comment empty
+        userPost.innerHTML = '';
+        userComments.innerHTML = '';
+        //loop through the post
+        postURL.forEach(post =>{
+            const postListElement = document.createElement('li')
+            postListElement.textContent = `${post.title} -${post.body}`;
+            userPost.appendChild(postListElement);
+            postListElement.addEventListener('click', ()=>{
+                getUserComment(comment[0].id)
+            });
+        });
+    };
+};
