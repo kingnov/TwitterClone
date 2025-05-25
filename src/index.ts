@@ -43,14 +43,28 @@ interface Comment{
 
 //select dom element from the html
 const pickUser = document.getElementById("pickUser") as HTMLSelectElement;
-
 //selectinguser 
 const userdeitails = document.getElementById("userdetail") as HTMLUListElement
-
 //post
 const userPost = document.getElementById("user-post") as HTMLUListElement;
-
 //comments
 const userComments = document.getElementById("user-comment") as HTMLUListElement;
-
 //userdetails call
+
+
+// function to get  all users
+let userURL: User[]
+const getAllUsers = async ()=>{
+    const userUrl = await fetch('https://jsonplaceholder.typicode.com/users');
+    //sending the request
+    if(userUrl.ok){
+        userURL = await userUrl.json();
+        userURL.forEach(user =>{
+            // create an option element 
+            const avaialableOption = document.createElement('option');
+            avaialableOption.textContent = user.name;
+            pickUser.appendChild(avaialableOption)
+        });
+        
+    }
+}
