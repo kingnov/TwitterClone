@@ -84,8 +84,25 @@ const getUserPost = async(userId: number)=>{
             postListElement.textContent = `${post.title} -${post.body}`;
             userPost.appendChild(postListElement);
             postListElement.addEventListener('click', ()=>{
-                getUserComment(comment[0].id)
+                // getUserComment(comment[0].id)
             });
         });
+        getAllUsers()
     };
 };
+
+//function to get the comment
+let commentURL : Comment[]
+const getUserComment = async(userId:number, postId:number)=>{
+    const commentUrl = await fetch(`https://jsonplaceholder.typicode.com/comments${postId}`)
+    if(commentUrl.ok){
+        commentURL = await commentUrl.json();
+        userComments.innerHTML = '';
+        commentURL.forEach(comments =>{
+            const commentListElement = document.createElement('li');
+            commentListElement.textContent = `${comments.email} ${comments.body}`;
+            userComments.appendChild(commentListElement);
+        });
+
+    }
+}
