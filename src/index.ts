@@ -44,7 +44,7 @@ interface Comment{
 //select dom element from the html
 const pickUser = document.getElementById("pickUser") as HTMLSelectElement;
 //selectinguser 
-const userdeitails = document.getElementById("userdetail") as HTMLUListElement
+const userDetails = document.getElementById("userdetails") as HTMLUListElement
 //post
 const userPost = document.getElementById("user-post") as HTMLUListElement;
 //comments
@@ -91,6 +91,25 @@ const getUserPost = async(userId: number)=>{
     };
 };
 
+const getUserDetails = (userId:number)=>{
+    // loop 
+    const user = userURL.find(user=>user.id===userId)
+    if(user){
+        const userLists = document.createElement('li');
+        const userDetail = [
+            `${user.name}`,
+            `${user.username}`,
+            `${user.company}`
+        ]
+        // loop 
+        userDetail.forEach(details =>{
+            userLists.textContent = details
+            userDetails.appendChild(userLists)
+
+        })
+    }
+}
+
 //function to get the comment
 let commentURL : Comment[]
 const getUserComment = async(userId:number, postId:number)=>{
@@ -106,3 +125,11 @@ const getUserComment = async(userId:number, postId:number)=>{
 
     }
 }
+
+// addEventListener to the select drop down change 
+pickUser.addEventListener('click', ()=>{
+    const pickedUserId = parseInt(pickUser.value)
+    getAllUsers()
+})
+
+getAllUsers()
