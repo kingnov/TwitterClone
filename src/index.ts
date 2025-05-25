@@ -1,4 +1,15 @@
 // interfaces user, posts and comments 
+interface User{
+
+}
+
+interface Post{
+
+}
+
+interface Comment{
+    
+}
 
 //select dom element from the html
 const pickUser = document.getElementById("pickUser") as HTMLSelectElement;
