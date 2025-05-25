@@ -62,9 +62,14 @@ const getAllUsers = async ()=>{
         userURL.forEach(user =>{
             // create an option element 
             const avaialableOption = document.createElement('option');
+            avaialableOption.value = user.id.toString()
             avaialableOption.textContent = user.name;
             pickUser.appendChild(avaialableOption)
         });
+        // pick user with value of 1 to be defauled displayed 
+        pickUser.value = '1'
+        getUserPost(1)
+        getUserDetails(1)
     }
 }
 
@@ -84,10 +89,9 @@ const getUserPost = async(userId: number)=>{
             postListElement.textContent = `${post.title} -${post.body}`;
             userPost.appendChild(postListElement);
             postListElement.addEventListener('click', ()=>{
-                // getUserComment(comment[0].id)
+            getUserComment(post.id, post.id)
             });
         });
-        getAllUsers()
     };
 };
 
@@ -95,14 +99,15 @@ const getUserDetails = (userId:number)=>{
     // loop 
     const user = userURL.find(user=>user.id===userId)
     if(user){
-        const userLists = document.createElement('li');
+        userDetails.innerHTML = '';
         const userDetail = [
             `${user.name}`,
             `${user.username}`,
-            `${user.company}`
+            `${user.company.catchPhrase}`
         ]
         // loop 
         userDetail.forEach(details =>{
+            const userLists = document.createElement('li')
             userLists.textContent = details
             userDetails.appendChild(userLists)
 
@@ -127,9 +132,10 @@ const getUserComment = async(userId:number, postId:number)=>{
 }
 
 // addEventListener to the select drop down change 
-pickUser.addEventListener('click', ()=>{
-    const pickedUserId = parseInt(pickUser.value)
-    getAllUsers()
+pickUser.addEventListener('change', ()=>{
+    const pickedUserId = parseFloat(pickUser.value)
+    getUserPost(pickedUserId)
+    getUserDetails(pickedUserId)
 })
 
 getAllUsers()
