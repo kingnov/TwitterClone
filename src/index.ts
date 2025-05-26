@@ -114,8 +114,43 @@ const getUserPost = async(userId: number)=>{
         //loop through the post
         postURL.forEach(post =>{
             const postListElement = document.createElement('li')
+            // postListElement.textContent = `${post.title} -${post.body}`;
+            
+
+            const image = document.createElement('div');
+            image.className = 'com-image';
+            image.innerHTML = ""
+            const imageDiv = document.createElement('div') //div for images
+            const image123 = document.createElement('img') //its on its own
+            image123.src = "/src/images/boseman.png"
+            const leftDiv = document.createElement('div') //left
+            const commentListElement = document.createElement('li');
+            const pdiv = document.createElement('div');
+            pdiv.className = "pElements"
+            const message = document.createElement('p')
+            message.textContent = '0'
+            const share = document.createElement('p')
+            share.textContent = '0'
+            const love = document.createElement('p')
+            love.textContent = '0'
+            // commentListElement.textContent = `${comments.email} ${comments.body}`
             postListElement.textContent = `${post.title} -${post.body}`;
-            userPost.appendChild(postListElement);
+            
+            imageDiv.appendChild(image123)
+            leftDiv.appendChild(postListElement)
+            leftDiv.appendChild(pdiv)
+            
+            image.appendChild(imageDiv)
+            image.appendChild(leftDiv)
+            pdiv.appendChild(message);
+            pdiv.appendChild(share);
+            pdiv.appendChild(love)
+            
+
+
+
+
+            userPost.appendChild(image);
             postListElement.addEventListener('click', ()=>{
             getUserComment(post.id)
             });
@@ -132,7 +167,7 @@ const getUserDetails = (userId:number)=>{
             `${user.email}`,
             `@${user.username}`,
             `${user.company.catchPhrase}`,
-            `${user.address.geo.lng}`
+            `${user.address.street}`
         ]
         // loop 
         userDetail.forEach(details =>{
@@ -165,11 +200,11 @@ const getUserComment = async(postId:number)=>{
             const pdiv = document.createElement('div');
             pdiv.className = "pElements"
             const message = document.createElement('p')
-            message.textContent = '0'
+            message.textContent = '200'
             const share = document.createElement('p')
-            share.textContent = '0'
+            share.textContent = '200'
             const love = document.createElement('p')
-            love.textContent = '0'
+            love.textContent = '200'
             commentListElement.textContent = `${comments.email} ${comments.body}`
             
             imageDiv.appendChild(image123)

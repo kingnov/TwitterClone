@@ -61,10 +61,35 @@
             gap: 2rem;
             .com-image{
                 display: flex;
+                gap: 1rem;
                 
                 img{
-                    width: 5rem;
-                    height: 5rem;
+                    width: 7rem;
+                    height: 7rem;
+                    border-radius: 8px;
+                }
+                .pElements{
+                    display: flex;
+                    gap: 2rem;
+                }
+            }
+        }
+    }
+    .post{
+        display: flex;
+        flex-direction: column;
+        ul{
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            .com-image{
+                display: flex;
+                gap: 1rem;
+                
+                img{
+                    width: 7rem;
+                    height: 7rem;
                     border-radius: 8px;
                 }
                 .pElements{
