@@ -1,3 +1,30 @@
+// Project 1: Twitter Clone
+
+// Below are some APIs to use to build atwitter clone. Check the demo for more. 
+
+// USERS 
+// https://jsonplaceholder.typicode.com/users 
+
+// POSTS 
+// https://jsonplaceholder.typicode.com/posts 
+//  OR (https://jsonplaceholder.typicode.com/posts?userId=1) 
+
+// COMMENTS 
+// https://jsonplaceholder.typicode.com/comments 
+//  OR (https://jsonplaceholder.typicode.com/comments?postId=1) 
+
+
+// Task 
+// Consume the users API and print all users by username on a select box (by default, display user with ID one) 
+// On selecting a User Display the post that user has (by default, display user with ID 1) 
+// On selecting a Post show all its comments. (by default, display comments for post with ID 1) 
+
+// DEMO  
+// https://twitter-signals-7iou.vercel.app/ 
+
+
+
+
 // interfaces user, posts and comments 
 interface User{
 
@@ -25,7 +52,7 @@ interface User{
 }
 
 interface Post{
-    userId:string,
+    userId:number,
     id:number,
     title:string,
     body:string
@@ -35,6 +62,7 @@ interface Post{
 
 interface Comment{
     postId: number,
+    id: number,
     name: string,
     email:string,
     body:string
@@ -53,13 +81,13 @@ const userComments = document.getElementById("user-comment") as HTMLUListElement
 
 
 // function to get  all users
-let userURL: User[]
+let userURL: User[];
 const getAllUsers = async ()=>{
     const userUrl = await fetch('https://jsonplaceholder.typicode.com/users');
     //sending the request
     if(userUrl.ok){
         userURL = await userUrl.json();
-        userURL.forEach(user =>{
+        userURL.forEach((user) =>{
             // create an option element 
             const avaialableOption = document.createElement('option');
             avaialableOption.value = user.id.toString()
@@ -68,15 +96,15 @@ const getAllUsers = async ()=>{
         });
         // pick user with value of 1 to be defauled displayed 
         pickUser.value = '1'
-        getUserPost(1)
-        getUserDetails(1)
+        getUserPost(1);
+        getUserDetails(1);
     }
 }
 
 //function to get user post
-let postURL: Post[]
+let postURL: Post[];
 const getUserPost = async(userId: number)=>{
-    const postUrl = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const postUrl = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`);
     if(postUrl.ok){
         postURL = await postUrl.json();
 
@@ -89,7 +117,7 @@ const getUserPost = async(userId: number)=>{
             postListElement.textContent = `${post.title} -${post.body}`;
             userPost.appendChild(postListElement);
             postListElement.addEventListener('click', ()=>{
-            getUserComment(post.id, post.id)
+            getUserComment(post.id)
             });
         });
     };
@@ -97,7 +125,7 @@ const getUserPost = async(userId: number)=>{
 
 const getUserDetails = (userId:number)=>{
     // loop 
-    const user = userURL.find(user=>user.id===userId)
+    const user = userURL.find(user => user.id === userId)
     if(user){
         userDetails.innerHTML = '';
         const userDetail = [
@@ -109,7 +137,7 @@ const getUserDetails = (userId:number)=>{
         userDetail.forEach(details =>{
             const userLists = document.createElement('li')
             userLists.textContent = details
-            userDetails.appendChild(userLists)
+            userDetails.appendChild(userLists);
 
         })
     }
@@ -117,11 +145,13 @@ const getUserDetails = (userId:number)=>{
 
 //function to get the comment
 let commentURL : Comment[]
-const getUserComment = async(userId:number, postId:number)=>{
-    const commentUrl = await fetch(`https://jsonplaceholder.typicode.com/comments${postId}`)
+const getUserComment = async(postId:number)=>{
+    const commentUrl = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
     if(commentUrl.ok){
         commentURL = await commentUrl.json();
         userComments.innerHTML = '';
+
+
         commentURL.forEach(comments =>{
             const commentListElement = document.createElement('li');
             commentListElement.textContent = `${comments.email} ${comments.body}`;

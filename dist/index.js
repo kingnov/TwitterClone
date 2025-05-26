@@ -1,4 +1,5 @@
 "use strict";
+// Project 1: Twitter Clone
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -24,7 +25,7 @@ const getAllUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     //sending the request
     if (userUrl.ok) {
         userURL = yield userUrl.json();
-        userURL.forEach(user => {
+        userURL.forEach((user) => {
             // create an option element 
             const avaialableOption = document.createElement('option');
             avaialableOption.value = user.id.toString();
@@ -40,7 +41,7 @@ const getAllUsers = () => __awaiter(void 0, void 0, void 0, function* () {
 //function to get user post
 let postURL;
 const getUserPost = (userId) => __awaiter(void 0, void 0, void 0, function* () {
-    const postUrl = yield fetch('https://jsonplaceholder.typicode.com/posts');
+    const postUrl = yield fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`);
     if (postUrl.ok) {
         postURL = yield postUrl.json();
         //make the innerHTML of the post and comment empty
@@ -52,7 +53,7 @@ const getUserPost = (userId) => __awaiter(void 0, void 0, void 0, function* () {
             postListElement.textContent = `${post.title} -${post.body}`;
             userPost.appendChild(postListElement);
             postListElement.addEventListener('click', () => {
-                getUserComment(post.id, post.id);
+                getUserComment(post.id);
             });
         });
     }
@@ -78,8 +79,8 @@ const getUserDetails = (userId) => {
 };
 //function to get the comment
 let commentURL;
-const getUserComment = (userId, postId) => __awaiter(void 0, void 0, void 0, function* () {
-    const commentUrl = yield fetch(`https://jsonplaceholder.typicode.com/comments${postId}`);
+const getUserComment = (postId) => __awaiter(void 0, void 0, void 0, function* () {
+    const commentUrl = yield fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`);
     if (commentUrl.ok) {
         commentURL = yield commentUrl.json();
         userComments.innerHTML = '';
