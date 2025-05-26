@@ -113,9 +113,7 @@ const getUserPost = async(userId: number)=>{
         userComments.innerHTML = '';
         //loop through the post
         postURL.forEach(post =>{
-            const postListElement = document.createElement('li')
-            // postListElement.textContent = `${post.title} -${post.body}`;
-            
+            const postListElement = document.createElement('li')        
 
             const image = document.createElement('div');
             image.className = 'com-image';
@@ -124,15 +122,14 @@ const getUserPost = async(userId: number)=>{
             const image123 = document.createElement('img') //its on its own
             image123.src = "/src/images/boseman.png"
             const leftDiv = document.createElement('div') //left
-            const commentListElement = document.createElement('li');
             const pdiv = document.createElement('div');
             pdiv.className = "pElements"
             const message = document.createElement('p')
-            message.textContent = '0'
+            message.textContent = '200'
             const share = document.createElement('p')
-            share.textContent = '0'
+            share.textContent = '200'
             const love = document.createElement('p')
-            love.textContent = '0'
+            love.textContent = '200'
             // commentListElement.textContent = `${comments.email} ${comments.body}`
             postListElement.textContent = `${post.title} -${post.body}`;
             
@@ -200,11 +197,11 @@ const getUserComment = async(postId:number)=>{
             const pdiv = document.createElement('div');
             pdiv.className = "pElements"
             const message = document.createElement('p')
-            message.textContent = '200'
+            message.textContent = '0'
             const share = document.createElement('p')
-            share.textContent = '200'
+            share.textContent = '0'
             const love = document.createElement('p')
-            love.textContent = '200'
+            love.textContent = '0'
             commentListElement.textContent = `${comments.email} ${comments.body}`
             
             imageDiv.appendChild(image123)

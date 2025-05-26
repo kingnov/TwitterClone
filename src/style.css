@@ -71,6 +71,7 @@
                 .pElements{
                     display: flex;
                     gap: 2rem;
+                    font-size: 16px;
                 }
             }
         }
@@ -95,6 +96,114 @@
                 .pElements{
                     display: flex;
                     gap: 2rem;
+                }
+            }
+        }
+    }
+}
+
+/* Media queries */
+@media screen and (max-width:812px) {
+    .title{
+        .csv{
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+    }
+    .reaction{
+        display: flex;
+        padding: .5em;
+        .comment{
+            display: flex;
+            flex-direction: column;
+            ul{
+                gap: .5em;
+                .com-image{
+                    gap: .5em;
+                    li{
+                        font-size: 10px;
+                    }
+                    img{
+                        width: 7rem;
+                        height: 7rem;
+                        border-radius: 8px;
+                    }
+                    .pElements{
+                        display: flex;
+                        gap: .5em;
+                    }
+                }
+            }
+        }
+        .post{
+            ul{
+                gap: .5em;
+                .com-image{
+                    gap: .5em;
+                    li{
+                        font-size: 10px;
+                    }
+                    img{
+                        width: 4rem;
+                        height: 4rem;
+                        border-radius: 4px;
+                    }
+                    .pElements{
+                        display: flex;
+                        gap: .5em;
+                        font-size: 8px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:612px) {
+    .title{
+        .csv{
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+    .reaction{
+        display: flex;
+        padding: .5em;
+        .comment{
+            display: flex;
+            flex-direction: column;
+            ul{
+                gap: .5em;
+                .com-image{
+                    gap: .5em;
+                    li{
+                        font-size: 8px;
+                    }
+                    img{
+                        width: 4rem;
+                        height: 4rem;
+                        border-radius: 4px;
+                    }
+                    .pElements{
+                        display: flex;
+                        gap: .5em;
+                        font-size: 6px;
+                    }
+                }
+            }
+        }
+        .post{
+            ul{
+                gap: .5em;
+                .com-image{
+                    display: flex;
+                    gap: .5em;
+                    li{
+                        font-size: 8px;
+                    }
+                    .pElements{
+                        gap: 1rem;
+                    }
                 }
             }
         }
