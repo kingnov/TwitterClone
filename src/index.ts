@@ -72,7 +72,7 @@ interface Comment{
 //select dom element from the html
 const pickUser = document.getElementById("pickUser") as HTMLSelectElement;
 //selectinguser 
-const userDetails = document.getElementById("userdetails") as HTMLUListElement
+const userDetails = document.getElementById("userdetail") as HTMLUListElement
 //post
 const userPost = document.getElementById("user-post") as HTMLUListElement;
 //comments
@@ -129,9 +129,10 @@ const getUserDetails = (userId:number)=>{
     if(user){
         userDetails.innerHTML = '';
         const userDetail = [
-            `${user.name}`,
-            `${user.username}`,
-            `${user.company.catchPhrase}`
+            `${user.email}`,
+            `@${user.username}`,
+            `${user.company.catchPhrase}`,
+            `${user.address.geo.lng}`
         ]
         // loop 
         userDetail.forEach(details =>{
@@ -153,9 +154,37 @@ const getUserComment = async(postId:number)=>{
 
 
         commentURL.forEach(comments =>{
+            const image = document.createElement('div');
+            image.className = 'com-image';
+            image.innerHTML = ""
+            const imageDiv = document.createElement('div') //div for images
+            const image123 = document.createElement('img') //its on its own
+            image123.src = "/src/images/boseman.png"
+            const leftDiv = document.createElement('div') //left
             const commentListElement = document.createElement('li');
-            commentListElement.textContent = `${comments.email} ${comments.body}`;
-            userComments.appendChild(commentListElement);
+            const pdiv = document.createElement('div');
+            pdiv.className = "pElements"
+            const message = document.createElement('p')
+            message.textContent = '0'
+            const share = document.createElement('p')
+            share.textContent = '0'
+            const love = document.createElement('p')
+            love.textContent = '0'
+            commentListElement.textContent = `${comments.email} ${comments.body}`
+            
+            imageDiv.appendChild(image123)
+            leftDiv.appendChild(commentListElement)
+            leftDiv.appendChild(pdiv)
+            
+            image.appendChild(imageDiv)
+            image.appendChild(leftDiv)
+            pdiv.appendChild(message);
+            pdiv.appendChild(share);
+            pdiv.appendChild(love)
+            
+            
+            userComments.appendChild(image);
+
         });
 
     }
@@ -168,4 +197,4 @@ pickUser.addEventListener('change', ()=>{
     getUserDetails(pickedUserId)
 })
 
-getAllUsers()
+getAllUsers();

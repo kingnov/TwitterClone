@@ -12,7 +12,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 //select dom element from the html
 const pickUser = document.getElementById("pickUser");
 //selectinguser 
-const userDetails = document.getElementById("userdetails");
+const userDetails = document.getElementById("userdetail");
 //post
 const userPost = document.getElementById("user-post");
 //comments
@@ -65,9 +65,10 @@ const getUserDetails = (userId) => {
     if (user) {
         userDetails.innerHTML = '';
         const userDetail = [
-            `${user.name}`,
-            `${user.username}`,
-            `${user.company.catchPhrase}`
+            `${user.email}`,
+            `@${user.username}`,
+            `${user.company.catchPhrase}`,
+            `${user.address.geo.lng}`
         ];
         // loop 
         userDetail.forEach(details => {
@@ -85,9 +86,32 @@ const getUserComment = (postId) => __awaiter(void 0, void 0, void 0, function* (
         commentURL = yield commentUrl.json();
         userComments.innerHTML = '';
         commentURL.forEach(comments => {
+            const image = document.createElement('div');
+            image.className = 'com-image';
+            image.innerHTML = "";
+            const imageDiv = document.createElement('div'); //div for images
+            const image123 = document.createElement('img'); //its on its own
+            image123.src = "/src/images/boseman.png";
+            const leftDiv = document.createElement('div'); //left
             const commentListElement = document.createElement('li');
+            const pdiv = document.createElement('div');
+            pdiv.className = "pElements";
+            const message = document.createElement('p');
+            message.textContent = '0';
+            const share = document.createElement('p');
+            share.textContent = '0';
+            const love = document.createElement('p');
+            love.textContent = '0';
             commentListElement.textContent = `${comments.email} ${comments.body}`;
-            userComments.appendChild(commentListElement);
+            imageDiv.appendChild(image123);
+            leftDiv.appendChild(commentListElement);
+            leftDiv.appendChild(pdiv);
+            image.appendChild(imageDiv);
+            image.appendChild(leftDiv);
+            pdiv.appendChild(message);
+            pdiv.appendChild(share);
+            pdiv.appendChild(love);
+            userComments.appendChild(image);
         });
     }
 });
