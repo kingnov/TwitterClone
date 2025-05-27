@@ -61,20 +61,46 @@ interface User {
     userDetail.innerHTML = "";
     posts.forEach((post) => {
       const li = document.createElement("li");
-      li.innerHTML = `<div class='post'><img src='images/ProfileImage.png'><div><h4>${post.title}</h4><p>${post.body}</p></div></div>`;
+      li.innerHTML = `
+        <div class="post">
+          <img src="images/ProfileImage.png" class="profile-pic">
+          <div>
+            <h4>Leanne Graham <img src="images/verify.png" class="verify-icon" /></h4>
+            <p>${post.body}</p>
+            <div class="icons">
+              <span>🗨️ <span>200</span></span>
+              <span>🔁 <span>200</span></span>
+              <span>❤️ <span style="color:red;">200</span></span>
+            </div>
+          </div>
+        </div>`;
       li.addEventListener("click", () => loadComments(post.id));
       userDetail.appendChild(li);
     });
   }
+   
   
   function renderComments(comments: Comment[]) {
     userComments.innerHTML = "";
     comments.forEach((comment) => {
       const li = document.createElement("li");
-      li.innerHTML = `<div class='comment'><img src='images/ProfileImage.png'><div><h5>${comment.email}</h5><p>${comment.body}</p></div></div>`;
+      li.innerHTML = `
+        <div class="comment">
+          <img src="images/ProfileImage.png" class="profile-pic">
+          <div>
+            <h5>${comment.email} <img src="images/verify.png" class="verify-icon" /></h5>
+            <p>${comment.body}</p>
+            <div class="icons">
+              <span>🗨️ <span>0</span></span>
+              <span>🔁 <span>0</span></span>
+              <span>❤️ <span style="color:red;">0</span></span>
+            </div>
+          </div>
+        </div>`;
       userComments.appendChild(li);
     });
   }
+  
   
   async function loadUser(userId: number) {
     const users = await fetchUsers();

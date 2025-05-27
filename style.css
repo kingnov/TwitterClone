@@ -13,6 +13,10 @@
     justify-content: space-between;
     align-items: center;
   }
+
+
+
+
   
   .search select {
     width: 15rem;
@@ -70,6 +74,9 @@
     border-radius: 0.5rem;
     margin-bottom: 1rem;
   }
+
+
+  
   
   .post img, .comment img {
     width: 80px;
@@ -77,4 +84,31 @@
     object-fit: cover;
     border-radius: 0.5rem;
   }
+  .post, .comment {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+  .icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 8px;
+    font-size: 14px;
+    align-items: center;
+  }
+  
+  
+  .verify-icon {
+    width: 16px;
+    vertical-align: middle;
+    margin-left: 5px;
+  }
+  
   
