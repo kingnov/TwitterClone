@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const userSelect = document.getElementById("pickUser");
-const userDetail = document.getElementById("userdetail");
+const userDetail = document.getElementById("userDetail");
 const userComments = document.getElementById("userComments");
 const nameField = document.getElementById("userName");
 const handleField = document.getElementById("userHandle");

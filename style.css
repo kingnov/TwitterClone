@@ -12,6 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .search select {
@@ -72,6 +73,7 @@ ul {
   padding: 1rem;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .post img,
@@ -95,16 +97,69 @@ ul {
   font-size: 14px;
   align-items: center;
 }
-
-/* .verify-icon {
-  width: 16px;
-  vertical-align: middle;
-  margin-left: 5px;
-} */
-
-.postComment{
+.postComment {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.content,
+.comments {
+  flex: 1 1 45%;
 }
 
 
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .search select {
+    width: 100%;
+  }
+
+  .profile {
+    align-items: center;
+    margin-left: 0;
+  }
+
+  .profile-img {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .post,
+  .comment {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .post img,
+  .comment img {
+    width: 100%;
+    height: auto;
+  }
+  
+
+
+  .icons {
+    justify-content: start;
+    gap: 10px;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .backgroundContainer img {
+    height: 6rem;
+  }
+
+  .postComment {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
